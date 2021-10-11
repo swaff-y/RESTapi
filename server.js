@@ -15,9 +15,20 @@ mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true});
 //A variable to store mongo connection
 const db = mongoose.connection;
 //See if there is an error connecting to our database
-db.on('error', (error) => {console.error(error)});
+db.on('error', (error) => console.error(error));
 //message to see that we have connected to the database
-db.once('open', () => {console.log('connected to database')});
+db.once('open', () => console.log('connected to database'));
+
+//setup server to use JSON
+//middleware - used before it gets passed to your routes
+// lets our server accept json as a body instead of a post or get element
+app.use(express.json());
+
+//setup our routes
+const subscribersRouter = require("./routes/subscribers");
+//localhost:3000/subscribers
+app.use('/subscribers', subscribersRouter);
+
 
 //the port to listen on
 //npm run devStart -> to start server
