@@ -50,9 +50,21 @@ router.post("/", async (req,res) => {
 });
 //Update One
 //put updates all. Patch only updates the info passed
-//curl -X PATCH http://localhost:3000/subscribers/6167f42172f1a407b2bcbeef
-router.patch("/:id", getSubscriber, (req,res) => {
+//curl -X PATCH -H "Content-Type: application/json" -d '{"name":"Chase"}' http://localhost:3000/subscribers/616a105a06b836c0c411b00a
+router.patch("/:id", getSubscriber, async (req,res) => {
+  if(req.body.name !== null){
+    res.subscriber.name = req.body.name;
+  }
+  if(req.body.name !== null){
+    res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
+  }
 
+  try{
+    const updatedSubscriber = await res.subscriber.save();
+    res.status(201).json(updatedSubscriber)
+  } catch(err) {
+    res.status(400).json({ message: err.message })
+  }
 });
 //Delete One
 //curl -X DELETE http://localhost:3000/subscribers/6167f42172f1a407b2bcbeef
