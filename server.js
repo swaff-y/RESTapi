@@ -25,11 +25,12 @@ db.once('open', () => console.log('connected to database'));
 app.use(express.json());
 
 //setup our routes
-const subscribersRouter = require("./routes/subscribers");
+const subscribersController = require("./controllers/subscribers");
 //localhost:3000/subscribers
-app.use('/subscribers', subscribersRouter);
+// app.use('/subscribers', subscribersController);
 
 
 //the port to listen on
 //npm run devStart -> to start server
 app.listen(3000, () => console.log('Server started'));
+app.use('/subscribers', subscribersController);
