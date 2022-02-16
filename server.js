@@ -26,6 +26,7 @@ app.use(express.json());
 
 //setup our routes
 const subscribersController = require("./controllers/subscribers");
+const indexController = require("./controllers/index");
 //localhost:3000/subscribers
 // app.use('/subscribers', subscribersController);
 
@@ -34,3 +35,4 @@ const subscribersController = require("./controllers/subscribers");
 //npm run devStart -> to start server
 app.listen(3000, () => console.log('Server started'));
 app.use('/subscribers', subscribersController);
+app.use('/', indexController);

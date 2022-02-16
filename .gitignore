@@ -1,7 +1,7 @@
+node_modules
 .env
 .elasticbeanstalk
-node_modules
-
+.gitignore
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
