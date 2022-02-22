@@ -1,6 +1,6 @@
 //to use env we need to use dotenv
 //.config method pull all of our ENV variables from our .env file
-require("dotenv").config();
+if(process.env.PRODUCTION){require("dotenv").config();}
 
 //require express for teh server
 const express = require('express');
